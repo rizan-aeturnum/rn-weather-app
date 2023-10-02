@@ -6,7 +6,6 @@ export default StyleSheet.create({
     backgroundColor: theme.colors.primary.light,
     padding: theme.spacing[4],
     marginHorizontal: theme.spacing[3],
-    // marginTop: theme.spacing[6] * 2,
     borderRadius: theme.spacing[2],
     flexDirection: "row",
     justifyContent: "space-between",
