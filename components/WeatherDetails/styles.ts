@@ -4,9 +4,10 @@ import theme from "../../styles/theme";
 export default StyleSheet.create({
   container: {
     backgroundColor: theme.colors.primary.light,
-    paddingHorizontal: theme.spacing[5],
-    paddingTop: theme.spacing[6],
-    paddingBottom: theme.spacing[3],
+    padding: theme.spacing[4],
+    marginHorizontal: theme.spacing[3],
+    // marginTop: theme.spacing[6] * 2,
+    borderRadius: theme.spacing[2],
     flexDirection: "row",
     justifyContent: "space-between",
   },

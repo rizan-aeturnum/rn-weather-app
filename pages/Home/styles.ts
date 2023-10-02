@@ -2,6 +2,9 @@ import { StyleSheet } from "react-native";
 import theme from "../../styles/theme";
 
 export default StyleSheet.create({
+  pageContainer: {
+    flex: 1,
+  },
   floatingIconBtn: {
     width: 60,
     height: 60,
