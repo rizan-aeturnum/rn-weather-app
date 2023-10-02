@@ -1,12 +1,18 @@
-import { Text, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { View } from "react-native";
+import { IconButton } from "@react-native-material/core";
 import WeatherDetails from "../../components/WeatherDetails";
+import MUIcon from "@expo/vector-icons/MaterialCommunityIcons";
+import styles from "./styles";
 
 function Home() {
   return (
-    <View>
+    <>
       <WeatherDetails />
-    </View>
+      <IconButton
+        icon={<MUIcon name="plus" style={styles.floatingIconBtnIcon} />}
+        style={styles.floatingIconBtn}
+      />
+    </>
   );
 }
 
