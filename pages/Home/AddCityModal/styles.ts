@@ -19,4 +19,13 @@ export default StyleSheet.create({
   bodyContainer: {
     paddingHorizontal: theme.spacing[2],
   },
+  emptyListContainer: {
+    padding: theme.spacing[3],
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  emptyListText: {
+    fontSize: theme.fontSize.p1,
+    color: theme.colors.others.dark1,
+  },
 });
