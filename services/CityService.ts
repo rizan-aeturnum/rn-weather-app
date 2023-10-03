@@ -15,10 +15,14 @@ class CityService {
   }
 
   static async addCityToStorage(city: CityData): Promise<void> {
-    const citiesData = await AsyncStorage.getItem(CITY_STORAGE_KEY);
-    const cities = JSON.parse(citiesData || "[]") as CityData[];
+    const cities = await CityService.getCitiesFromStorage();
     cities.push(city);
     await AsyncStorage.setItem(CITY_STORAGE_KEY, JSON.stringify(cities));
+  }
+
+  static async getCitiesFromStorage(): Promise<CityData[]> {
+    const citiesData = await AsyncStorage.getItem(CITY_STORAGE_KEY);
+    return JSON.parse(citiesData || "[]") as CityData[];
   }
 }
 
