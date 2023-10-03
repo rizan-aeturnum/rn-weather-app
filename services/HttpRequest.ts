@@ -1,4 +1,4 @@
-class ApiRequest {
+class HttpRequest {
   static baseUrl = process.env.EXPO_PUBLIC_API_URL;
   static apiKey = process.env.EXPO_PUBLIC_API_KEY;
 
@@ -8,11 +8,11 @@ class ApiRequest {
     queryParams?: Record<string, string>
   ) {
     const queryUrl = new URLSearchParams({
-      key: ApiRequest.apiKey || "",
+      key: HttpRequest.apiKey || "",
       ...queryParams,
     });
     const response = await fetch(
-      `${ApiRequest.baseUrl}/${url}?${queryUrl.toString()}`,
+      `${HttpRequest.baseUrl}/${url}?${queryUrl.toString()}`,
       {
         method: requestMethod,
       }
@@ -24,8 +24,8 @@ class ApiRequest {
   }
 
   static async get(endpoint: string, queryParams?: Record<string, string>) {
-    return ApiRequest.request(endpoint, "GET", queryParams);
+    return HttpRequest.request(endpoint, "GET", queryParams);
   }
 }
 
-export default ApiRequest;
+export default HttpRequest;
