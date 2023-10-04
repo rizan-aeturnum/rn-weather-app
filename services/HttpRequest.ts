@@ -4,19 +4,16 @@ class HttpRequest {
 
   static async request(
     url: string,
-    requestMethod: RequestInit["method"],
+    requestMethod: RequestInit['method'],
     queryParams?: Record<string, string>
   ) {
     const queryUrl = new URLSearchParams({
-      key: HttpRequest.apiKey || "",
+      key: HttpRequest.apiKey || '',
       ...queryParams,
     });
-    const response = await fetch(
-      `${HttpRequest.baseUrl}/${url}?${queryUrl.toString()}`,
-      {
-        method: requestMethod,
-      }
-    );
+    const response = await fetch(`${HttpRequest.baseUrl}/${url}?${queryUrl.toString()}`, {
+      method: requestMethod,
+    });
     return {
       status: response.status,
       data: await response.json(),
@@ -24,7 +21,7 @@ class HttpRequest {
   }
 
   static async get(endpoint: string, queryParams?: Record<string, string>) {
-    return HttpRequest.request(endpoint, "GET", queryParams);
+    return HttpRequest.request(endpoint, 'GET', queryParams);
   }
 }
 

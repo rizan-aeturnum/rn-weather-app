@@ -1,10 +1,12 @@
-import { Alert, FlatList, Modal, Text, View } from "react-native";
-import { IconButton, TextInput, ListItem } from "@react-native-material/core";
-import MUIcon from "@expo/vector-icons/MaterialCommunityIcons";
-import styles from "./styles";
-import theme from "../../../styles/theme";
-import useCitySearch from "../../../hooks/useCitySearch";
-import CityService from "../../../services/CityService";
+import MUIcon from '@expo/vector-icons/MaterialCommunityIcons';
+import { IconButton, TextInput, ListItem } from '@react-native-material/core';
+import { Alert, FlatList, Modal, Text, View } from 'react-native';
+
+import styles from './styles';
+import useCitySearch from '../../../hooks/useCitySearch';
+import CityService from '../../../services/CityService';
+import theme from '../../../styles/theme';
+import { CityData } from '../../../types/apidata';
 
 interface AddCityModalProps {
   isVisible: boolean;
@@ -18,28 +20,23 @@ function AddCityModal(props: AddCityModalProps) {
   const { searchWord, searchedCities, setSearchWord } = useCitySearch();
 
   const onCityPress = (city: CityData) => () => {
-    Alert.alert("Add City", "Do you want to this city the weather forecast", [
+    Alert.alert('Add City', 'Do you want to this city the weather forecast', [
       {
         isPreferred: true,
-        text: "Add",
+        text: 'Add',
         onPress: () => {
           CityService.addCityToStorage(city)
-            .then(() =>
-              Alert.alert(
-                "City Added",
-                "Successfully added the city to the list"
-              )
-            )
+            .then(() => Alert.alert('City Added', 'Successfully added the city to the list'))
             .catch(() =>
               Alert.alert(
-                "City Not Added",
-                "Something went wrong while adding the city. city might be already in the list."
+                'City Not Added',
+                'Something went wrong while adding the city. city might be already in the list.'
               )
             );
         },
       },
       {
-        text: "Cancel",
+        text: 'Cancel',
       },
     ]);
   };
@@ -52,7 +49,7 @@ function AddCityModal(props: AddCityModalProps) {
           icon={<MUIcon name="close" style={styles.headerTitleText} />}
           onPress={() => {
             onModalClose();
-            setSearchWord("");
+            setSearchWord('');
           }}
         />
       </View>
@@ -79,9 +76,7 @@ function AddCityModal(props: AddCityModalProps) {
           keyExtractor={(item) => item.url}
           ListEmptyComponent={() => (
             <View style={styles.emptyListContainer}>
-              <Text style={styles.emptyListText}>
-                No Filtered Cities to Show
-              </Text>
+              <Text style={styles.emptyListText}>No Filtered Cities to Show</Text>
             </View>
           )}
         />

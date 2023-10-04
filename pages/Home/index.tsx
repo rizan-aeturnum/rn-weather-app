@@ -1,15 +1,16 @@
-import { ScrollView, Dimensions, View } from "react-native";
-import { IconButton } from "@react-native-material/core";
-import WeatherDetails from "../../components/WeatherDetails";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import MUIcon from "@expo/vector-icons/MaterialCommunityIcons";
-import styles from "./styles";
-import AddCityModal from "./AddCityModal";
-import { useState } from "react";
-import useCityData from "../../hooks/useCityData";
-import EmptyCity from "../../components/EmptyCity";
-import Carousel from "react-native-reanimated-carousel";
-import theme from "../../styles/theme";
+import MUIcon from '@expo/vector-icons/MaterialCommunityIcons';
+import { IconButton } from '@react-native-material/core';
+import { useState } from 'react';
+import { Dimensions, View } from 'react-native';
+import Carousel from 'react-native-reanimated-carousel';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import AddCityModal from './AddCityModal';
+import styles from './styles';
+import EmptyCity from '../../components/EmptyCity';
+import WeatherDetails from '../../components/WeatherDetails';
+import useCityData from '../../hooks/useCityData';
+import theme from '../../styles/theme';
 
 function Home() {
   const [showAddCityModal, setShowAddCityModal] = useState<boolean>(false);
@@ -20,9 +21,7 @@ function Home() {
 
   return (
     <>
-      <View
-        style={[{ paddingTop: safeAreaInsets.top * 2 }, styles.pageContainer]}
-      >
+      <View style={[{ paddingTop: safeAreaInsets.top * 2 }, styles.pageContainer]}>
         {cities.length === 0 ? (
           <EmptyCity />
         ) : (
@@ -30,14 +29,10 @@ function Home() {
             data={cities}
             loop={false}
             height={230}
-            width={Dimensions.get("screen").width}
+            width={Dimensions.get('screen').width}
             onSnapToItem={setCurrentCityIndex}
             renderItem={({ item }) => (
-              <WeatherDetails
-                key={item.url}
-                city={item}
-                reloadCities={loadCities}
-              />
+              <WeatherDetails key={item.url} city={item} reloadCities={loadCities} />
             )}
           />
         )}

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import CityService from "../services/CityService";
-import { debounce } from "lodash-es";
+import { debounce } from 'lodash-es';
+import { useEffect, useState } from 'react';
+
+import CityService from '../services/CityService';
 
 function useCitySearch() {
-  const [searchWord, setSearchWord] = useState<string>("");
+  const [searchWord, setSearchWord] = useState<string>('');
   const [searchedCities, setSearchCities] = useState<CityData[]>([]);
 
   const loadSearchedCities = debounce(() => {

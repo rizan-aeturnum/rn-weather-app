@@ -1,15 +1,16 @@
-import { StyleSheet } from "react-native";
-import theme from "../../styles/theme";
+import { StyleSheet } from 'react-native';
+
+import theme from '../../styles/theme';
 
 export default StyleSheet.create({
   pageContainer: {
-    minHeight: "100%",
+    minHeight: '100%',
     paddingBottom: 100,
   },
   carouselIndicatorContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   carouselIndicator: {
     backgroundColor: theme.colors.others.dark1,
@@ -23,7 +24,7 @@ export default StyleSheet.create({
     height: 60,
     borderRadius: 30,
     backgroundColor: theme.colors.primary.main,
-    position: "absolute",
+    position: 'absolute',
     bottom: 30,
     right: 30,
   },

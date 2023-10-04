@@ -1,13 +1,14 @@
-import { Text, View, Image, Alert } from "react-native";
-import moment from "moment";
-import styles from "./styles";
-import { IconButton } from "@react-native-material/core";
-import MUIcon from "@expo/vector-icons/MaterialCommunityIcons";
-import useWeatherData from "../../hooks/useWeatherData";
-import { get } from "lodash-es";
-import theme from "../../styles/theme";
-import LoadingIndicator from "../LoadingIndicator";
-import CityService from "../../services/CityService";
+import MUIcon from '@expo/vector-icons/MaterialCommunityIcons';
+import { IconButton } from '@react-native-material/core';
+import { get } from 'lodash-es';
+import moment from 'moment';
+import { Text, View, Image, Alert } from 'react-native';
+
+import styles from './styles';
+import useWeatherData from '../../hooks/useWeatherData';
+import CityService from '../../services/CityService';
+import theme from '../../styles/theme';
+import LoadingIndicator from '../LoadingIndicator';
 
 interface WeatherDetailsProps {
   city: CityData;
@@ -19,40 +20,33 @@ function WeatherDetails(props: WeatherDetailsProps) {
   const { city } = props;
   const { reloadCities } = props;
   const { weatherData, loading, loadWeatherData } = useWeatherData(city);
-  const temperature = get(weatherData, "current.temp_c");
-  const isDay = get(weatherData, "current.is_day");
-  const tileColor = theme.colors.primary[isDay ? "light" : "dark"];
-  const weatherImageUrl = `https:${get(weatherData, "current.condition.icon")}`;
-  const weatherDescription = get(weatherData, "current.condition.text");
-  const lastUpdated = get(weatherData, "current.last_updated", "");
+  const temperature = get(weatherData, 'current.temp_c');
+  const isDay = get(weatherData, 'current.is_day');
+  const tileColor = theme.colors.primary[isDay ? 'light' : 'dark'];
+  const weatherImageUrl = `https:${get(weatherData, 'current.condition.icon')}`;
+  const weatherDescription = get(weatherData, 'current.condition.text');
+  const lastUpdated = get(weatherData, 'current.last_updated', '');
 
   const onDeletePress = () => {
-    Alert.alert(
-      "Deleting city",
-      "Do you really want to delete the city from the weather list ?",
-      [
-        {
-          text: "Yes",
-          onPress: () => {
-            CityService.deleteCityFromStorage(city.url)
-              .then(() => {
-                Alert.alert(
-                  "Success",
-                  "City was successfully deleted from the list"
-                );
-                reloadCities();
-              })
-              .catch(() => {
-                Alert.alert("Failed", "Something went wrong");
-              });
-          },
+    Alert.alert('Deleting city', 'Do you really want to delete the city from the weather list ?', [
+      {
+        text: 'Yes',
+        onPress: () => {
+          CityService.deleteCityFromStorage(city.url)
+            .then(() => {
+              Alert.alert('Success', 'City was successfully deleted from the list');
+              reloadCities();
+            })
+            .catch(() => {
+              Alert.alert('Failed', 'Something went wrong');
+            });
         },
-        {
-          isPreferred: true,
-          text: "No",
-        },
-      ]
-    );
+      },
+      {
+        isPreferred: true,
+        text: 'No',
+      },
+    ]);
   };
 
   return (

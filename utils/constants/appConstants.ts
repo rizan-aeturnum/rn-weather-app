@@ -1,1 +1,1 @@
-export const CITY_STORAGE_KEY = "cities";
+export const CITY_STORAGE_KEY = 'cities';

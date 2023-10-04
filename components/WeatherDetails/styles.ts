@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
-import theme from "../../styles/theme";
+import { StyleSheet } from 'react-native';
+
+import theme from '../../styles/theme';
 
 export default StyleSheet.create({
   container: {
@@ -8,11 +9,11 @@ export default StyleSheet.create({
     marginHorizontal: theme.spacing[3],
     marginBottom: theme.spacing[3],
     borderRadius: theme.spacing[2],
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   innerContainer: {
-    height: "100%",
+    height: '100%',
   },
   detailsContainer: {
     marginBottom: theme.spacing[5],
@@ -27,25 +28,25 @@ export default StyleSheet.create({
   },
   tempText: {
     fontSize: theme.fontSize.h1,
-    fontWeight: "600",
+    fontWeight: '600',
     color: theme.colors.others.grey1,
   },
   subTempText: {
     color: theme.colors.others.grey2,
   },
   imageContainer: {
-    justifyContent: "center",
-    alignItems: "flex-end",
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
   weatherDescriptionText: {
-    width: "100%",
-    textAlign: "center",
+    width: '100%',
+    textAlign: 'center',
   },
   iconBtnContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     right: 0,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   iconBtnIcon: {
     color: theme.colors.others.grey1,

@@ -1,11 +1,12 @@
-import { StyleSheet } from "react-native";
-import theme from "../../../styles/theme";
+import { StyleSheet } from 'react-native';
+
+import theme from '../../../styles/theme';
 
 export default StyleSheet.create({
   headerContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingLeft: theme.spacing[2],
     marginHorizontal: theme.spacing[1],
     marginVertical: theme.spacing[3],
@@ -21,8 +22,8 @@ export default StyleSheet.create({
   },
   emptyListContainer: {
     padding: theme.spacing[3],
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   emptyListText: {
     fontSize: theme.fontSize.p1,

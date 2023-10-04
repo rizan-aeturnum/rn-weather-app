@@ -1,4 +1,4 @@
-interface CityData {
+export interface CityData {
   name: string;
   region: string;
   country: string;

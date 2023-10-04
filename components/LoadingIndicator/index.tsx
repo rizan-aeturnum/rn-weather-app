@@ -1,7 +1,8 @@
-import { ActivityIndicator } from "@react-native-material/core";
-import { View } from "react-native";
-import styles from "./styles";
-import theme from "../../styles/theme";
+import { ActivityIndicator } from '@react-native-material/core';
+import { View } from 'react-native';
+
+import styles from './styles';
+import theme from '../../styles/theme';
 
 function LoadingIndicator() {
   return (

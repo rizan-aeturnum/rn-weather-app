@@ -1,12 +1,13 @@
-import { StyleSheet } from "react-native";
-import theme from "../../styles/theme";
+import { StyleSheet } from 'react-native';
+
+import theme from '../../styles/theme';
 
 export default StyleSheet.create({
   container: {
     height: 200,
     backgroundColor: theme.colors.primary.main,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     margin: theme.spacing[3],
     borderRadius: theme.spacing[2],
     padding: theme.spacing[4],
@@ -14,6 +15,6 @@ export default StyleSheet.create({
   emptyText: {
     fontSize: theme.fontSize.p1,
     color: theme.colors.others.white,
-    textAlign: "center",
+    textAlign: 'center',
   },
 });

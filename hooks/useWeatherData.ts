@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import WeatherService from "../services/WeatherService";
+import { useEffect, useState } from 'react';
+
+import WeatherService from '../services/WeatherService';
 
 function useWeatherData(city: CityData) {
   const [weatherData, setWeatherData] = useState();
