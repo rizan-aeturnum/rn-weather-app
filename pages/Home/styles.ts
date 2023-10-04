@@ -6,6 +6,18 @@ export default StyleSheet.create({
     minHeight: "100%",
     paddingBottom: 100,
   },
+  carouselIndicatorContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  carouselIndicator: {
+    backgroundColor: theme.colors.others.dark1,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginHorizontal: theme.spacing[1],
+  },
   floatingIconBtn: {
     width: 60,
     height: 60,

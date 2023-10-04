@@ -6,7 +6,7 @@ export default {
   },
   others: {
     grey1: "#FAFAFA",
-    grey2: "#F0F0F0",
+    grey2: "#E0E0E0",
     dark1: "#333333",
     dark2: "#111111",
     white: "#FFFFFF",
