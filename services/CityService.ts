@@ -24,6 +24,12 @@ class CityService {
     const citiesData = await AsyncStorage.getItem(CITY_STORAGE_KEY);
     return JSON.parse(citiesData || "[]") as CityData[];
   }
+
+  static async deleteCityFromStorage(cityUrl: string): Promise<void> {
+    const cities = await CityService.getCitiesFromStorage();
+    const newCityList = cities.filter((city) => city.url !== cityUrl);
+    await AsyncStorage.setItem(CITY_STORAGE_KEY, JSON.stringify(newCityList));
+  }
 }
 
 export default CityService;

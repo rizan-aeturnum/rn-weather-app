@@ -1,4 +1,4 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, Alert } from "react-native";
 import styles from "./styles";
 import { IconButton } from "@react-native-material/core";
 import MUIcon from "@expo/vector-icons/MaterialCommunityIcons";
@@ -6,13 +6,17 @@ import useWeatherData from "../../hooks/useWeatherData";
 import { get } from "lodash-es";
 import theme from "../../styles/theme";
 import LoadingIndicator from "../LoadingIndicator";
+import CityService from "../../services/CityService";
 
 interface WeatherDetailsProps {
   city: CityData;
+
+  reloadCities: () => void;
 }
 
 function WeatherDetails(props: WeatherDetailsProps) {
   const { city } = props;
+  const { reloadCities } = props;
   const { weatherData, loading, loadWeatherData } = useWeatherData(city);
   const temperature = get(weatherData, "current.temp_c");
   const isDay = get(weatherData, "current.is_day");
@@ -20,6 +24,35 @@ function WeatherDetails(props: WeatherDetailsProps) {
   const weatherImageUrl = `https:${get(weatherData, "current.condition.icon")}`;
   const weatherDescription = get(weatherData, "current.condition.text");
   const lastUpdated = get(weatherData, "current.last_updated");
+
+  const onDeletePress = () => {
+    Alert.alert(
+      "Deleting city",
+      "Do you really want to delete the city from the weather list ?",
+      [
+        {
+          text: "Yes",
+          onPress: () => {
+            CityService.deleteCityFromStorage(city.url)
+              .then(() => {
+                Alert.alert(
+                  "Success",
+                  "City was successfully deleted from the list"
+                );
+                reloadCities();
+              })
+              .catch(() => {
+                Alert.alert("Failed", "Something went wrong");
+              });
+          },
+        },
+        {
+          isPreferred: true,
+          text: "No",
+        },
+      ]
+    );
+  };
 
   return (
     <View style={[styles.container, { backgroundColor: tileColor }]}>
@@ -33,7 +66,7 @@ function WeatherDetails(props: WeatherDetailsProps) {
         </View>
         <View>
           <Text style={styles.tempText}>{temperature}°C</Text>
-          <Text style={styles.subTempText}>{lastUpdated}</Text>
+          <Text style={styles.subTempText}>Updated at {lastUpdated}</Text>
         </View>
       </View>
       <View style={styles.innerContainer}>
@@ -56,6 +89,7 @@ function WeatherDetails(props: WeatherDetailsProps) {
           />
           <IconButton
             icon={<MUIcon name="delete" style={styles.iconBtnIcon} />}
+            onPress={onDeletePress}
           />
         </View>
       </View>

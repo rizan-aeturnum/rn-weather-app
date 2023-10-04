@@ -12,7 +12,7 @@ function Home() {
   const [showAddCityModal, setShowAddCityModal] = useState<boolean>(false);
   const safeAreaInsets = useSafeAreaInsets();
 
-  const { cities } = useCityData();
+  const { cities, loadCities } = useCityData();
 
   return (
     <>
@@ -23,7 +23,11 @@ function Home() {
         ]}
       >
         {cities.map((city) => (
-          <WeatherDetails key={city.url} city={city} />
+          <WeatherDetails
+            key={city.url}
+            city={city}
+            reloadCities={loadCities}
+          />
         ))}
       </ScrollView>
       <IconButton
@@ -33,7 +37,10 @@ function Home() {
       />
       <AddCityModal
         isVisible={showAddCityModal}
-        onModalClose={() => setShowAddCityModal(false)}
+        onModalClose={() => {
+          loadCities();
+          setShowAddCityModal(false);
+        }}
       />
     </>
   );
