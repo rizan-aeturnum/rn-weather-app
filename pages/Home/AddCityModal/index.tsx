@@ -24,8 +24,18 @@ function AddCityModal(props: AddCityModalProps) {
         text: "Add",
         onPress: () => {
           CityService.addCityToStorage(city)
-            .then(() => alert("Successfully added the city to the list"))
-            .catch(() => alert("Something went wrong while adding the city."));
+            .then(() =>
+              Alert.alert(
+                "City Added",
+                "Successfully added the city to the list"
+              )
+            )
+            .catch(() =>
+              Alert.alert(
+                "City Not Added",
+                "Something went wrong while adding the city. city might be already in the list."
+              )
+            );
         },
       },
       {
@@ -40,7 +50,10 @@ function AddCityModal(props: AddCityModalProps) {
         <Text style={styles.headerTitleText}>Search and Add City</Text>
         <IconButton
           icon={<MUIcon name="close" style={styles.headerTitleText} />}
-          onPress={onModalClose}
+          onPress={() => {
+            onModalClose();
+            setSearchWord("");
+          }}
         />
       </View>
       <View style={styles.bodyContainer}>
@@ -56,6 +69,7 @@ function AddCityModal(props: AddCityModalProps) {
         />
         <FlatList
           data={searchedCities}
+          keyboardShouldPersistTaps="handled"
           renderItem={({ item }) => (
             <ListItem
               title={`${item.name} - ${item.region}, ${item.country}`}
