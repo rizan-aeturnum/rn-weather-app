@@ -7,6 +7,7 @@ import styles from "./styles";
 import AddCityModal from "./AddCityModal";
 import { useState } from "react";
 import useCityData from "../../hooks/useCityData";
+import EmptyCity from "../../components/EmptyCity";
 
 function Home() {
   const [showAddCityModal, setShowAddCityModal] = useState<boolean>(false);
@@ -22,6 +23,7 @@ function Home() {
           styles.pageContainer,
         ]}
       >
+        {cities.length === 0 && <EmptyCity />}
         {cities.map((city) => (
           <WeatherDetails
             key={city.url}
