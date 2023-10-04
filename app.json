@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "rn-weather-app",
+    "name": "RE Weather",
     "slug": "rn-weather-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -18,13 +18,20 @@
       "supportsTablet": true
     },
     "android": {
+      "permission": ["android.permission.INTERNET"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#E8F7FA"
+      },
+      "package": "com.rizan.aeturnum.rnweatherapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7b80ce27-c986-4828-bd1c-fbb5382362bc"
+      }
     }
   }
 }
