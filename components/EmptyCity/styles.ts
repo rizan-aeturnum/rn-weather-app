@@ -3,7 +3,7 @@ import theme from "../../styles/theme";
 
 export default StyleSheet.create({
   container: {
-    height: 250,
+    height: 200,
     backgroundColor: theme.colors.primary.main,
     justifyContent: "center",
     alignItems: "center",
