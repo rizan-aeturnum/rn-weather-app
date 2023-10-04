@@ -6,18 +6,32 @@ import MUIcon from "@expo/vector-icons/MaterialCommunityIcons";
 import styles from "./styles";
 import AddCityModal from "./AddCityModal";
 import { useState } from "react";
+import useCityData from "../../hooks/useCityData";
+import EmptyCity from "../../components/EmptyCity";
 
 function Home() {
   const [showAddCityModal, setShowAddCityModal] = useState<boolean>(false);
   const safeAreaInsets = useSafeAreaInsets();
+
+  const { cities, loadCities } = useCityData();
+
   return (
-    <ScrollView
-      contentContainerStyle={[
-        { paddingTop: safeAreaInsets.top * 2 },
-        styles.pageContainer,
-      ]}
-    >
-      <WeatherDetails />
+    <>
+      <ScrollView
+        contentContainerStyle={[
+          { paddingTop: safeAreaInsets.top * 2 },
+          styles.pageContainer,
+        ]}
+      >
+        {cities.length === 0 && <EmptyCity />}
+        {cities.map((city) => (
+          <WeatherDetails
+            key={city.url}
+            city={city}
+            reloadCities={loadCities}
+          />
+        ))}
+      </ScrollView>
       <IconButton
         icon={<MUIcon name="plus" style={styles.floatingIconBtnIcon} />}
         style={styles.floatingIconBtn}
@@ -25,9 +39,12 @@ function Home() {
       />
       <AddCityModal
         isVisible={showAddCityModal}
-        onModalClose={() => setShowAddCityModal(false)}
+        onModalClose={() => {
+          loadCities();
+          setShowAddCityModal(false);
+        }}
       />
-    </ScrollView>
+    </>
   );
 }
 

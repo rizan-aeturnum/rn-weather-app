@@ -3,7 +3,8 @@ import theme from "../../styles/theme";
 
 export default StyleSheet.create({
   pageContainer: {
-    flex: 1,
+    minHeight: "100%",
+    paddingBottom: 100,
   },
   floatingIconBtn: {
     width: 60,
@@ -11,7 +12,7 @@ export default StyleSheet.create({
     borderRadius: 30,
     backgroundColor: theme.colors.primary.main,
     position: "absolute",
-    bottom: 40,
+    bottom: 30,
     right: 30,
   },
   floatingIconBtnIcon: {

@@ -8,6 +8,7 @@ import CityService from "../../../services/CityService";
 
 interface AddCityModalProps {
   isVisible: boolean;
+
   onModalClose: () => void;
 }
 
@@ -15,6 +16,24 @@ function AddCityModal(props: AddCityModalProps) {
   const { isVisible } = props;
   const { onModalClose } = props;
   const { searchWord, searchedCities, setSearchWord } = useCitySearch();
+
+  const onCityPress = (city: CityData) => () => {
+    Alert.alert("Add City", "Do you want to this city the weather forecast", [
+      {
+        isPreferred: true,
+        text: "Add",
+        onPress: () => {
+          CityService.addCityToStorage(city)
+            .then(() => alert("Successfully added the city to the list"))
+            .catch(() => alert("Something went wrong while adding the city."));
+        },
+      },
+      {
+        text: "Cancel",
+      },
+    ]);
+  };
+
   return (
     <Modal visible={isVisible} animationType="slide">
       <View style={styles.headerContainer}>
@@ -40,30 +59,7 @@ function AddCityModal(props: AddCityModalProps) {
           renderItem={({ item }) => (
             <ListItem
               title={`${item.name} - ${item.region}, ${item.country}`}
-              onPress={() => {
-                Alert.alert(
-                  "Add City",
-                  "Do you want to this city the weather forecast",
-                  [
-                    {
-                      isPreferred: true,
-                      text: "Add",
-                      onPress: () => {
-                        CityService.addCityToStorage(item)
-                          .then(() =>
-                            alert("Successfully added the city to the list")
-                          )
-                          .catch(() =>
-                            alert("Something went wrong while adding the city.")
-                          );
-                      },
-                    },
-                    {
-                      text: "Cancel",
-                    },
-                  ]
-                );
-              }}
+              onPress={onCityPress(item)}
             />
           )}
           keyExtractor={(item) => item.url}
