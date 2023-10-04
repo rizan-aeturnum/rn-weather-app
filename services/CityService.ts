@@ -16,6 +16,8 @@ class CityService {
 
   static async addCityToStorage(city: CityData): Promise<void> {
     const cities = await CityService.getCitiesFromStorage();
+    const isCityAlreadyAvailable = cities.some((c) => c.url === city.url);
+    if (isCityAlreadyAvailable) throw new Error("Already city is exist");
     cities.push(city);
     await AsyncStorage.setItem(CITY_STORAGE_KEY, JSON.stringify(cities));
   }

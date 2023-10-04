@@ -1,4 +1,5 @@
 import { Text, View, Image, Alert } from "react-native";
+import moment from "moment";
 import styles from "./styles";
 import { IconButton } from "@react-native-material/core";
 import MUIcon from "@expo/vector-icons/MaterialCommunityIcons";
@@ -23,7 +24,7 @@ function WeatherDetails(props: WeatherDetailsProps) {
   const tileColor = theme.colors.primary[isDay ? "light" : "dark"];
   const weatherImageUrl = `https:${get(weatherData, "current.condition.icon")}`;
   const weatherDescription = get(weatherData, "current.condition.text");
-  const lastUpdated = get(weatherData, "current.last_updated");
+  const lastUpdated = get(weatherData, "current.last_updated", "");
 
   const onDeletePress = () => {
     Alert.alert(
@@ -66,7 +67,9 @@ function WeatherDetails(props: WeatherDetailsProps) {
         </View>
         <View>
           <Text style={styles.tempText}>{temperature}°C</Text>
-          <Text style={styles.subTempText}>Updated at {lastUpdated}</Text>
+          <Text style={styles.subTempText}>
+            update at {moment(lastUpdated).utc().from(moment().utc())}
+          </Text>
         </View>
       </View>
       <View style={styles.innerContainer}>
